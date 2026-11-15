@@ -505,6 +505,12 @@ html.v3-opening-pending.v3-cover #v3-flying{opacity:0}
 html{scrollbar-gutter:stable}
 #master-thread #master-trace,.story-thread .trace-glow{animation:none!important}
 .story-thread .trace-current{filter:none!important}
+
+/* v12.3 — the thread breathes again, on the compositor (layer translate) instead of repainting 8000px paths */
+@keyframes br-sway{0%{translate:-4px 0}50%{translate:5px 0}100%{translate:-1px 0}}
+#master-thread,svg.story-thread{animation:br-sway 8.5s ease-in-out infinite alternate;will-change:translate}
+.story-thread .trace-current-halo{stroke:#CA9244;stroke-width:10px;opacity:.2;stroke-linecap:round}
+@media(prefers-reduced-motion:reduce){#master-thread,svg.story-thread{animation:none}}
 </style></head><body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site-header"><div class="header-tools-row"><div aria-label="Controlos de pré-visualização" class="preview-toolbar"><div class="preview-status">VISTA PREVIA PRIVADA · SIN PUBLICAR</div><button aria-label="Rever a animação inicial" class="replay-intro" id="replay-intro" type="button">↻  Rever abertura</button></div><div class="site-utilities" role="group" aria-label="Preferências e partilha">
@@ -897,9 +903,10 @@ html{scrollbar-gutter:stable}
   master.style.width=W+'px';master.style.height=docHeight+'px';
   const totalNative=nativeThread.getTotalLength();
   const matrix=nativeThread.getScreenCTM();
+  const swayX=parseFloat(getComputedStyle(nativeThread.ownerSVGElement).translate)||0;
   const ptAt=L=>{
    const p=nativeThread.getPointAtLength(L),sp=new DOMPoint(p.x,p.y).matrixTransform(matrix);
-    let x=sp.x+scrollX,y=sp.y+scrollY;
+    let x=sp.x+scrollX-swayX,y=sp.y+scrollY;
     if(W<=700){
       const bottom=document.querySelector('.hero').getBoundingClientRect().bottom+scrollY;
       x=lerp(Math.max(x,W-13),x,smooth((y-(bottom-130))/180));
@@ -926,7 +933,7 @@ html{scrollbar-gutter:stable}
   const maxEnd=Math.min(docHeight-10,innerHeight+240);
   const projected=nativePoints().filter(p=>p.L>b).map(p=>{
     const q=new DOMPoint(p.x,p.y).matrixTransform(matrix);
-    let x=q.x+scrollX,y=q.y+scrollY;
+    let x=q.x+scrollX-swayX,y=q.y+scrollY;
     // On narrow screens, the thread passes through the margin rather than text.
     if(W<=700){
       const hero=document.querySelector('.hero');
@@ -1103,7 +1110,7 @@ html{scrollbar-gutter:stable}
   if(t>=1)finish();
  },inspect:()=>({pathCount:document.querySelectorAll('#master-thread path.trace').length,legacyVisible:getComputedStyle(nativeThread).display,masterVisible:getComputedStyle(master).opacity,masterLength:pathLen,firstVisible:{x:trace.getPointAtLength(0).x,y:trace.getPointAtLength(0).y},maskUpper:maskUpper.getAttribute('opacity'),currentDash:trace.style.strokeDashoffset,finished,tipVisible:getComputedStyle(tip).opacity})};
 })();</script>
-<script id="v9-utilities">(()=>{
+<script id="v12-3-thread-halo">(()=>{const run=()=>document.querySelectorAll('.story-thread .trace-current').forEach(p=>{if(p.previousElementSibling?.classList.contains('trace-current-halo'))return;const h=p.cloneNode(false);h.removeAttribute('id');h.classList.add('trace-current-halo');h.setAttribute('aria-hidden','true');p.parentNode.insertBefore(h,p);});run();new MutationObserver(()=>setTimeout(run,0)).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});})();</script><script id="v9-utilities">(()=>{
   'use strict';
   const root=document.documentElement;
   const motionBtn=document.querySelector('#toggle-motion');
