@@ -458,6 +458,35 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
 .contact-choice-updates .brevo-panel {order:4;}
 .contact-choice .contact-choice-title {line-height:1.2;}
 @media(max-width:700px){.contact-choice-updates .brevo-open{min-height:52px}.contact-options{align-items:stretch}}
+
+/* v12.1 — native subscription form (posts to Brevo) */
+.contact-choice-updates .subscription-description{margin-bottom:22px}
+.br-sub{width:100%;display:flex;flex-direction:column;gap:14px}
+.br-sub[hidden]{display:none}
+.br-sub-label{font:600 13px/1.4 var(--sans,Arial,sans-serif);color:#393832;letter-spacing:.01em;margin:0 0 -6px}
+.br-sub-email{width:100%;min-height:54px;padding:0 22px;border:1px solid rgba(21,90,108,.32);border-radius:999px;background:#FAF8F4;font:400 16px/1.2 var(--sans,Arial,sans-serif);color:#211E1C;box-sizing:border-box;transition:border-color .2s ease,box-shadow .2s ease}
+.br-sub-email::placeholder{color:#8B8A80}
+.br-sub-email:focus{outline:none;border-color:#155A6C;box-shadow:0 0 0 3px rgba(21,90,108,.16)}
+.br-sub-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.br-sub-consent{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;font:400 13px/1.6 var(--sans,Arial,sans-serif);color:#4F5A52;cursor:pointer}
+.br-sub-consent input{width:18px;height:18px;margin:2px 0 0;accent-color:#155A6C;cursor:pointer}
+.br-sub-captcha:empty{display:none}
+.br-sub-captcha{min-height:78px}
+.br-sub-submit{width:100%;min-height:54px;border:1px solid #155A6C;border-radius:999px;background:#155A6C;color:#fff;font:700 14px/1.2 var(--sans,Arial,sans-serif);letter-spacing:.005em;cursor:pointer;transition:background .2s ease}
+.br-sub-submit:hover,.br-sub-submit:focus-visible{background:#0D4656}
+.br-sub-submit:disabled{opacity:.6;cursor:wait}
+.br-sub-msg{margin:0;font:400 13px/1.5 var(--sans,Arial,sans-serif);color:#155A6C}
+.br-sub-msg:empty{display:none}
+.br-sub-msg.is-error{color:#9A3B2E}
+.br-sub-note{margin:0;font:400 12px/1.65 var(--sans,Arial,sans-serif);color:#59665C}
+.br-sub-note a{color:#155A6C;text-decoration:underline;text-underline-offset:3px}
+.br-sub-done{width:100%;padding:22px 0 4px;border-top:1px solid rgba(21,90,108,.18);outline:none}
+.br-sub-done[hidden]{display:none}
+.br-sub-done-title{margin:0 0 8px;font:400 clamp(24px,2.4vw,30px)/1.2 var(--serif,Georgia,serif);color:#211E1C;letter-spacing:-.02em}
+.br-sub-done-text{margin:0;font:400 15px/1.6 var(--sans,Arial,sans-serif);color:#4F5A52}
+@media(max-width:400px){.br-sub-captcha{transform:scale(.86);transform-origin:0 0;min-height:67px;height:67px}}
+/* v12.1 — the opening animation draws the thread above the intro layer again */
+body.v3-opening-active #master-thread{z-index:212!important}
 </style></head><body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site-header"><div class="header-tools-row"><div aria-label="Controlos de pré-visualização" class="preview-toolbar"><div class="preview-status">VISTA PREVIA PRIVADA · SIN PUBLICAR</div><button aria-label="Rever a animação inicial" class="replay-intro" id="replay-intro" type="button">↻  Rever abertura</button></div><div class="site-utilities" role="group" aria-label="Preferências e partilha">
@@ -476,7 +505,7 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
 <div id="contenido"></div><div class="story-shell" style="position:relative;overflow:hidden"><svg aria-hidden="true" class="story-thread" preserveaspectratio="none" viewbox="0 0 1200 7600">
 <path class="ghost" d="M1066 -80C1020 170 1094 402 974 610S855 1014 1038 1319S1020 1680 1055 1925S1100 2280 930 2440S1090 2850 1005 3180S845 3430 975 3740S1110 4160 936 4384S1112 4863 1060 5130S855 5634 1010 6015S1100 6573 885 6830S1050 7300 990 7790"></path>
 <path class="trace-glow" d="M1066 -80C1020 170 1094 402 974 610S855 1014 1038 1319S1020 1680 1055 1925S1100 2280 930 2440S1090 2850 1005 3180S845 3430 975 3740S1110 4160 936 4384S1112 4863 1060 5130S855 5634 1010 6015S1100 6573 885 6830S1050 7300 990 7790"></path>
-<path class="legacy-trace" d="M1066 -80C1020 170 1094 402 974 610S855 1014 1038 1319S1020 1680 1055 1925S1100 2280 930 2440S1090 2850 1005 3180S845 3430 975 3740S1110 4160 936 4384S1112 4863 1060 5130S855 5634 1010 6015S1100 6573 885 6830S1050 7300 990 7790"></path><path class="trace-current" d="M1066 -80C1020 170 1094 402 974 610S855 1014 1038 1319S1020 1680 1055 1925S1100 2280 930 2440S1090 2850 1005 3180S845 3430 975 3740S1110 4160 936 4384S1112 4863 1060 5130S855 5634 1010 6015S1100 6573 885 6830S1050 7300 990 7790"></path></svg><main class="story" id="page-content"><section class="hero wrap" id="inicio"><div class="hero-copy"><h1 class="hero-title">Constelações Familiares</h1><h2 class="hero-statement">Mudar de lugar pode mudar <em>aquilo que sentimos.</em></h2><p>Todos temos zonas escuras que gostaríamos de iluminar.</p><p>As constelações familiares permitem-nos lançar luz sobre problemas, sintomas, relações e desafios, para os compreendermos melhor e os integrarmos.</p><a class="text-link" href="#constelaciones">Descobre as constelações <span aria-hidden="true">↓</span></a></div><div class="hero-art">
+<path class="legacy-trace" d="M1066 -80C1020 170 1094 402 974 610S855 1014 1038 1319S1020 1680 1055 1925S1100 2280 930 2440S1090 2850 1005 3180S845 3430 975 3740S1110 4160 936 4384S1112 4863 1060 5130S855 5634 1010 6015S1100 6573 885 6830S1050 7300 990 7790"></path><path class="trace-current" d="M1066 -80C1020 170 1094 402 974 610S855 1014 1038 1319S1020 1680 1055 1925S1100 2280 930 2440S1090 2850 1005 3180S845 3430 975 3740S1110 4160 936 4384S1112 4863 1060 5130S855 5634 1010 6015S1100 6573 885 6830S1050 7300 990 7790"></path></svg><main class="story" id="page-content"><section class="hero wrap" id="inicio"><div class="hero-copy"><h1 class="hero-title">Constelações Familiares</h1><h2 class="hero-statement">Mudar de lugar pode mudar <em>aquilo que sentimos.</em></h2><p>Todos temos zonas escuras que gostaríamos de iluminar.</p><p>As constelações familiares permitem-nos lançar luz sobre problemas, sintomas, relações e desafios, para os compreendermos melhor e os integrarmos.</p><a class="text-link" href="#constelaciones">Descobre as constelações familiares <span aria-hidden="true">↓</span></a></div><div class="hero-art">
 <svg aria-hidden="true" class="organic-scene" viewbox="0 0 740 820" xmlns="http://www.w3.org/2000/svg">
 <defs><lineargradient id="petal1" x1=".1" x2=".95" y1=".1" y2=".85"><stop stop-color="#C5D8C8"></stop><stop offset=".6" stop-color="#A8CAC0"></stop><stop offset="1" stop-color="#82B3AC"></stop></lineargradient>
 <radialgradient cx=".4" cy=".35" id="warm" r=".8"><stop stop-color="#F5D9B8"></stop><stop offset=".58" stop-color="#E3BA99"></stop><stop offset="1" stop-color="#C99478"></stop></radialgradient>
@@ -527,7 +556,7 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
 <section class="section wrap faq" id="preguntas"><div class="section-label"><span class="index">06 / PERGUNTAS FREQUENTES</span><h2>Perguntas<br/>frequentes.</h2><p>O respeito é um dos princípios fundamentais deste trabalho: respeito por cada pessoa, pela sua história, pelos seus sentimentos, pelos seus tempos e pelos seus limites.</p><button aria-controls="faq-list" class="text-link" id="expandFaq">Abrir todas as respostas <span aria-hidden="true">＋</span></button></div><div class="faq-items" id="faq-list"><details><summary>Preciso de experiência prévia para participar?<span aria-hidden="true" class="plus"></span></summary><p>Não. Não precisas de conhecer as constelações familiares nem de ter participado antes. No início de cada workshop explica-se como funciona o encontro e poderás fazer as perguntas de que precisares.</p></details><details><summary>Tenho de saber exactamente o que quero trabalhar?<span aria-hidden="true" class="plus"></span></summary><p>Não necessariamente. Podes chegar com uma pergunta concreta, com vários temas ou simplesmente com algo que te preocupa e que não sabes bem como expressar. O diálogo inicial com o facilitador ajuda a encontrar um ponto de partida.</p></details><details><summary>Qual é a diferença entre constelar, representar e observar?<span aria-hidden="true" class="plus"></span></summary><p><strong>Constelar</strong> é trabalhar uma questão própria.<br/><br/><strong>Representar</strong> é participar na constelação de outra pessoa, ocupando o lugar de alguém ou de algum elemento da sua representação.<br/><br/><strong>Observar</strong> é presenciar o processo sem intervir directamente.<br/><br/>São três formas diferentes de participar num workshop. As possibilidades concretas são indicadas em cada encontro.</p></details><details><summary>Tenho de contar a minha história pessoal à frente do grupo?<span aria-hidden="true" class="plus"></span></summary><p>Não precisas de contar toda a tua história nem de partilhar pormenores íntimos que prefiras guardar para ti. O importante é poderes falar daquilo que desejas trabalhar, respeitando sempre os teus próprios limites.<br/><br/>Nos encontros de grupo, todos os participantes devem comprometer-se a respeitar a confidencialidade do que é partilhado.</p></details><details><summary>E se não quiser representar ou alguma coisa me incomodar?<span aria-hidden="true" class="plus"></span></summary><p>Podes dizer que não a um convite para representar. E, se durante uma actividade alguma coisa te incomodar, podes dizê-lo e pedir para parar ou sair.<br/><br/>Ninguém tem de se forçar a viver algo para o qual não se sente com forças.</p></details><details><summary>O que acontece depois de uma constelação?<span aria-hidden="true" class="plus"></span></summary><p>Cada pessoa vive a experiência de forma diferente. Por vezes, surgem novas compreensões imediatamente; outras vezes, precisamos de tempo para reflectir sobre o que vivemos.<br/><br/>Não existe uma reacção correcta nem um resultado que tenhas de alcançar.</p></details><details><summary>As constelações familiares substituem a psicoterapia?<span aria-hidden="true" class="plus"></span></summary><p>Não. As constelações familiares não substituem os cuidados médicos ou psicológicos nem devem ser utilizadas para diagnosticar ou tratar doenças.<br/><br/>Podem ser uma experiência de exploração pessoal, mas não oferecem resultados garantidos.</p></details><details><summary>Quanto dura um workshop e quanto custa participar?<span aria-hidden="true" class="plus"></span></summary><p>A duração, o preço e as modalidades de participação podem variar de encontro para encontro. Encontrarás toda a informação no anúncio de cada workshop.</p></details></div></section>
 <section class="section contact" id="contacto"><div class="wrap contact-grid"><div class="contact-introduction"><span class="index">07 / CONTACTO</span><h2>Falamos?</h2><p>Se tens curiosidade, alguma pergunta ou simplesmente queres saber mais sobre as constelações familiares e os próximos encontros, terei todo o gosto em ouvir-te.</p><p><strong>Escreve-me. Será um prazer conhecer-te.</strong></p></div><div class="contact-options"><article class="contact-choice contact-choice-message"><h3 class="contact-choice-title">Escreve-me por email</h3><p class="contact-email-description">Podes escrever-me directamente. Responder-te-ei pessoalmente.</p><a class="button contact-email-button" href="mailto:hello@bernardoramirez.com">Escreve-me: hello@bernardoramirez.com</a></article><article class="contact-choice contact-choice-updates"><h3 class="contact-choice-title">Receber novidades</h3><p class="subscription-description">Se quiseres estar a par das novidades, podes subscrever para as receber.</p><p class="subscription-status">Subscrição pendente de configuração.</p><button aria-controls="subscription-contact" aria-expanded="false" class="subscription-view-button" id="updates-contact" type="button">Como receber novidades</button><div class="subscription-disclosure" hidden="" id="subscription-contact" tabindex="-1">A subscrição ainda não está activa. Falta ligar o serviço de correio e completar a informação de privacidade. Não são recolhidos dados nesta pré-visualização.</div></article></div></div></section>
 </main></div>
-<template id="template-es"><main class="story" id="content-es"><section class="hero wrap" id="inicio"><div class="hero-copy"><h1 class="hero-title">Constelaciones Familiares</h1><h2 class="hero-statement">Cambiar de lugar puede cambiar <em>lo que sentimos.</em></h2><p>Todos tenemos zonas oscuras que nos gustaría iluminar.</p><p>Las constelaciones familiares nos permiten arrojar luz sobre problemas, síntomas, relaciones y desafíos, para comprenderlos mejor e integrarlos.</p><a class="text-link" href="#constelaciones">Descubre las constelaciones <span aria-hidden="true">↓</span></a></div><div class="hero-art">
+<template id="template-es"><main class="story" id="content-es"><section class="hero wrap" id="inicio"><div class="hero-copy"><h1 class="hero-title">Constelaciones Familiares</h1><h2 class="hero-statement">Cambiar de lugar puede cambiar <em>lo que sentimos.</em></h2><p>Todos tenemos zonas oscuras que nos gustaría iluminar.</p><p>Las constelaciones familiares nos permiten arrojar luz sobre problemas, síntomas, relaciones y desafíos, para comprenderlos mejor e integrarlos.</p><a class="text-link" href="#constelaciones">Descubre las constelaciones familiares <span aria-hidden="true">↓</span></a></div><div class="hero-art">
 <svg aria-hidden="true" class="organic-scene" viewbox="0 0 740 820" xmlns="http://www.w3.org/2000/svg">
 <defs><lineargradient id="petal1" x1=".1" x2=".95" y1=".1" y2=".85"><stop stop-color="#C5D8C8"></stop><stop offset=".6" stop-color="#A8CAC0"></stop><stop offset="1" stop-color="#82B3AC"></stop></lineargradient>
 <radialgradient cx=".4" cy=".35" id="warm" r=".8"><stop stop-color="#F5D9B8"></stop><stop offset=".58" stop-color="#E3BA99"></stop><stop offset="1" stop-color="#C99478"></stop></radialgradient>
@@ -578,7 +607,7 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
 <section class="section wrap faq" id="preguntas"><div class="section-label"><span class="index">06 / PREGUNTAS FRECUENTES</span><h2>Preguntas<br/>frecuentes.</h2><p>El respeto es uno de los principios fundamentales de este trabajo: respeto por cada persona, por su historia, por sus sentimientos, por sus tiempos y por sus límites.</p><button aria-controls="faq-list" class="text-link" id="expandFaq">Abrir todas las respuestas <span aria-hidden="true">＋</span></button></div><div class="faq-items" id="faq-list"><details><summary>¿Necesito experiencia previa para participar?<span aria-hidden="true" class="plus"></span></summary><p>No. No necesitas conocer las constelaciones familiares ni haber participado antes. Al comienzo de cada taller se explica cómo funciona el encuentro y podrás hacer las preguntas que necesites.</p></details><details><summary>¿Tengo que saber exactamente qué quiero trabajar?<span aria-hidden="true" class="plus"></span></summary><p>No necesariamente. Puedes llegar con una pregunta concreta, con varios temas o simplemente con algo que te preocupa y no sabes muy bien cómo expresar. El diálogo inicial con el facilitador ayuda a encontrar un punto de partida.</p></details><details><summary>¿Qué diferencia hay entre constelar, representar y observar?<span aria-hidden="true" class="plus"></span></summary><p><strong>Constelar</strong> es trabajar una cuestión propia.<br/><br/><strong>Representar</strong> es participar en la constelación de otra persona, ocupando el lugar de alguien o de algún elemento de su representación.<br/><br/><strong>Observar</strong> es presenciar el proceso sin intervenir directamente.<br/><br/>Son tres maneras distintas de participar en un taller. Las posibilidades concretas se indican en cada encuentro.</p></details><details><summary>¿Tengo que contar mi historia personal delante del grupo?<span aria-hidden="true" class="plus"></span></summary><p>No necesitas contar toda tu historia ni compartir detalles íntimos que prefieras reservar. Lo importante es poder hablar de aquello que deseas trabajar, respetando siempre tus propios límites.<br/><br/>En los encuentros grupales, todos los participantes deben comprometerse a respetar la confidencialidad de lo compartido.</p></details><details><summary>¿Y si no quiero representar o algo me incomoda?<span aria-hidden="true" class="plus"></span></summary><p>Puedes decir que no a una invitación para representar. Y si durante una actividad algo te incomoda, puedes decirlo y pedir parar o retirarte.<br/><br/>Nadie tiene por qué forzarse a vivir algo para lo que no se siente con fuerzas.</p></details><details><summary>¿Qué ocurre después de una constelación?<span aria-hidden="true" class="plus"></span></summary><p>Cada persona vive la experiencia de una manera distinta. A veces surgen nuevas comprensiones inmediatamente; otras veces necesitamos tiempo para reflexionar sobre lo vivido.<br/><br/>No existe una reacción correcta ni un resultado que debas alcanzar.</p></details><details><summary>¿Las constelaciones familiares sustituyen a la psicoterapia?<span aria-hidden="true" class="plus"></span></summary><p>No. Las constelaciones familiares no sustituyen la atención médica o psicológica ni deben utilizarse para diagnosticar o tratar enfermedades.<br/><br/>Pueden ser una experiencia de exploración personal, pero no ofrecen resultados garantizados.</p></details><details><summary>¿Cuánto dura un taller y cuánto cuesta participar?<span aria-hidden="true" class="plus"></span></summary><p>La duración, el precio y las modalidades de participación pueden variar de un encuentro a otro. Encontrarás toda la información en la convocatoria de cada taller.</p></details></div></section>
 <section class="section contact" id="contacto"><div class="wrap contact-grid"><div class="contact-introduction"><span class="index">07 / CONTACTO</span><h2>¿Hablamos?</h2><p>Si tienes curiosidad, alguna pregunta o simplemente quieres saber más sobre las constelaciones familiares y los próximos encuentros, estaré encantado de escucharte.</p><p><strong>Escríbeme. Será un placer conocerte.</strong></p></div><div class="contact-options"><article class="contact-choice contact-choice-message"><h3 class="contact-choice-title">Escríbeme por correo</h3><p class="contact-email-description">Puedes escribirme directamente. Te responderé personalmente.</p><a class="button contact-email-button" href="mailto:hello@bernardoramirez.com">Escríbeme a hello@bernardoramirez.com</a></article><article class="contact-choice contact-choice-updates"><h3 class="contact-choice-title">Recibir novedades</h3><p class="subscription-description">Si quieres estar al tanto de las novedades, puedes suscribirte para recibirlas.</p><p class="subscription-status">Suscripción pendiente de configuración.</p><button aria-controls="subscription-contact" aria-expanded="false" class="subscription-view-button" id="updates-contact" type="button">Cómo recibir novedades</button><div class="subscription-disclosure" hidden="" id="subscription-contact" tabindex="-1">La suscripción aún no está activa. Falta conectar el servicio de correo y completar la información de privacidad. No se recogen datos en esta vista previa.</div></article></div></div></section>
 </main></template>
-<template id="template-pt"><main class="story" id="content-pt"><section class="hero wrap" id="inicio"><div class="hero-copy"><h1 class="hero-title">Constelações Familiares</h1><h2 class="hero-statement">Mudar de lugar pode mudar <em>aquilo que sentimos.</em></h2><p>Todos temos zonas escuras que gostaríamos de iluminar.</p><p>As constelações familiares permitem-nos lançar luz sobre problemas, sintomas, relações e desafios, para os compreendermos melhor e os integrarmos.</p><a class="text-link" href="#constelaciones">Descobre as constelações <span aria-hidden="true">↓</span></a></div><div class="hero-art">
+<template id="template-pt"><main class="story" id="content-pt"><section class="hero wrap" id="inicio"><div class="hero-copy"><h1 class="hero-title">Constelações Familiares</h1><h2 class="hero-statement">Mudar de lugar pode mudar <em>aquilo que sentimos.</em></h2><p>Todos temos zonas escuras que gostaríamos de iluminar.</p><p>As constelações familiares permitem-nos lançar luz sobre problemas, sintomas, relações e desafios, para os compreendermos melhor e os integrarmos.</p><a class="text-link" href="#constelaciones">Descobre as constelações familiares <span aria-hidden="true">↓</span></a></div><div class="hero-art">
 <svg aria-hidden="true" class="organic-scene" viewbox="0 0 740 820" xmlns="http://www.w3.org/2000/svg">
 <defs><lineargradient id="petal1" x1=".1" x2=".95" y1=".1" y2=".85"><stop stop-color="#C5D8C8"></stop><stop offset=".6" stop-color="#A8CAC0"></stop><stop offset="1" stop-color="#82B3AC"></stop></lineargradient>
 <radialgradient cx=".4" cy=".35" id="warm" r=".8"><stop stop-color="#F5D9B8"></stop><stop offset=".58" stop-color="#E3BA99"></stop><stop offset="1" stop-color="#C99478"></stop></radialgradient>
@@ -1474,17 +1503,36 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
 (()=>{
   'use strict';
   const forms={"en": "https://af038741.sibforms.com/v2/serve/MUIFAE2nB66CxXniAQJrO0Et7UBHZOrP7yZcub3lJYmkVDbDAlFepb7NS1Y4vbbIwe3-BwUdYgLni1iLRNTj9qqcAQIijn2ZJIbuvma01Qa6kiym3NPh7Gqa-1W-5tJhHoyGvbGukv_ppriCqi386s4aZxYTpQ90KiC9BOBGobqtS7Pn6--H9JUibESbqQH71wX3mHLcgz4ORzlvmw==", "pt": "https://af038741.sibforms.com/v2/serve/MUIFAL3kDV_Etz0ajHCmLgM93ixD3WEUGXrcQIrwIoy8WrnCW9G84LwIn52NsFy-Ky7CbrAyk13ClF51HUWgzQi5shJRRBtm6sJEwLRdhIhbOA8Dh_rarAx01hIVz185AKQVXR8HUbKY21PIwz_EXdhGPvnjvKfqVgB32RGpfk0nrku4H9ba1LYn5mHW_Ngt08VRuVZKd208rjQnMQ==", "es": "https://af038741.sibforms.com/v2/serve/MUIFAFwJguUilDxRlA9RRsBWhWv6h1T3Dgf9MHX8wnqE-hFEeAXxGIjphDJREAPqb0X5MtA3vYgcu5C44I1YFHY4Ep42xuBD-MA7OOCftJUIMeu5GsPKy6lwNUAEYzfkSdKEV-EYbMe-D48i5mqx6iO-JYRB21QLC5RjFjSjd-y4Gq7YEWACwMv81NXYeFeGXUyd7iYtB3Ajw1MUEQ=="};
+  const SITEKEY='6LcNnR4uAAAAAMRZ2Z-EJiYpblwYOoPbBV8iqjXL';
   const routes={"es": {"privacidad": "/es/privacidad/", "aviso": "/es/aviso-legal/", "cookies": "/es/cookies/"}, "pt": {"privacidad": "/pt/privacidade/", "aviso": "/pt/aviso-legal/", "cookies": "/pt/cookies/"}, "en": {"privacidad": "/en/privacy/", "aviso": "/en/legal-notice/", "cookies": "/en/cookies/"}};
   const msgs={
-    es:{open:'Quiero estar al tanto',close:'Cerrar formulario',external:'El formulario se abre con Brevo, que puede utilizar sistemas antispam. ',privacy:'Lee mi Política de privacidad',privacyAfter:' antes de continuar.',help:'Si el formulario no carga, puedes abrirlo directamente en Brevo.',direct:'Abrir en Brevo',frame:'Formulario de suscripción de Bernardo Ramirez — español'},
-    pt:{open:'Quero estar a par',close:'Fechar formulário',external:'O formulário abre através do Brevo, que pode utilizar sistemas anti-spam. ',privacy:'Lê a minha Política de Privacidade',privacyAfter:' antes de continuar.',help:'Se o formulário não carregar, podes abri-lo directamente no Brevo.',direct:'Abrir no Brevo',frame:'Formulário de subscrição de Bernardo Ramirez — português'},
-    en:{open:'Keep me updated',close:'Close subscription form',external:'The form opens with Brevo, which may use anti-spam technology. ',privacy:'Read my Privacy Policy',privacyAfter:' before proceeding.',help:'If the form does not load, you can open it directly on Brevo.',direct:'Open on Brevo',frame:'Bernardo Ramirez subscription form — English'}
+    es:{label:'Tu email',ph:'nombre@ejemplo.com',consent:'Sí, quiero recibir los emails de Bernardo sobre encuentros, talleres y alguna reflexión personal. Sé que puedo darme de baja cuando quiera.',submit:'Sí, escríbeme',sending:'Enviando…',note:'Te enviaré un email para que confirmes. Uso Brevo para gestionar la lista y Google reCAPTCHA contra el spam. ',privacy:'Política de privacidad',doneT:'Falta un paso.',doneP:'Te he enviado un email. Ábrelo y confirma tu suscripción. Si no lo ves, mira en promociones o spam.',errEmail:'Escribe un email válido.',errConsent:'Marca la casilla para darme tu permiso.',errCaptcha:'Marca «No soy un robot» para continuar.',errGeneric:'No se ha podido enviar. Inténtalo de nuevo dentro de un momento.'},
+    pt:{label:'O teu email',ph:'nome@exemplo.com',consent:'Sim, quero receber os emails do Bernardo sobre encontros, workshops e alguma reflexão pessoal. Sei que posso cancelar quando quiser.',submit:'Sim, escreve-me',sending:'A enviar…',note:'Vou enviar-te um email para confirmares. Uso o Brevo para gerir a lista e o Google reCAPTCHA contra o spam. ',privacy:'Política de Privacidade',doneT:'Falta só um passo.',doneP:'Enviei-te um email. Abre-o e confirma a subscrição. Se não o vires, espreita nas promoções ou no spam.',errEmail:'Escreve um email válido.',errConsent:'Marca a caixa para me dares autorização.',errCaptcha:'Marca «Não sou um robô» para continuar.',errGeneric:'Não foi possível enviar. Tenta outra vez daqui a pouco.'},
+    en:{label:'Your email',ph:'name@example.com',consent:'Yes, I would like to receive Bernardo\'s emails about gatherings, workshops and the occasional personal reflection. I know I can unsubscribe at any time.',submit:'Yes, write to me',sending:'Sending…',note:'I will send you an email to confirm. I use Brevo to manage the list and Google reCAPTCHA to prevent spam. ',privacy:'Privacy Policy',doneT:'One step left.',doneP:'I have sent you an email. Open it and confirm your subscription. If you cannot see it, check your promotions or spam folder.',errEmail:'Please enter a valid email.',errConsent:'Please tick the box to give your permission.',errCaptcha:'Please tick “I\'m not a robot” to continue.',errGeneric:'It could not be sent. Please try again in a moment.'}
   };
   const root=document.getElementById('page-content');
   const current=()=>document.documentElement.lang.toLowerCase().startsWith('pt')?'pt':document.documentElement.lang.toLowerCase().startsWith('en')?'en':'es';
+  let captchaPromise=null, widget=null;
+  function loadCaptcha(lang){
+    if(captchaPromise)return captchaPromise;
+    captchaPromise=new Promise((res,rej)=>{
+      window.__brCaptchaReady=()=>res(window.grecaptcha);
+      const s=document.createElement('script');
+      s.src='https://www.google.com/recaptcha/api.js?render=explicit&onload=__brCaptchaReady&hl='+lang;
+      s.async=true;s.defer=true;s.onerror=()=>{captchaPromise=null;rej(new Error('captcha'))};
+      document.head.appendChild(s);
+    });
+    return captchaPromise;
+  }
+  function renderCaptcha(form){
+    const box=form.querySelector('.br-sub-captcha');
+    if(!box||box.dataset.rendered)return Promise.resolve();
+    box.dataset.rendered='1';
+    return loadCaptcha(current()).then(g=>{widget=g.render(box,{sitekey:SITEKEY,theme:'light'});}).catch(()=>{delete box.dataset.rendered;});
+  }
+  function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
   function setup(){
     const lang=current(),txt=msgs[lang];
-    // This site swaps its main content on language selection: always rebuild UI when necessary.
     const eventSection=root.querySelector('#encuentros');
     const contact=root.querySelector('#contacto');
     if(!eventSection||!contact)return;
@@ -1495,49 +1543,54 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
       eventSection.querySelector('.status-note')?.remove();
     }
     const card=contact.querySelector('.contact-choice-updates');
-    if(card){
-      card.querySelector('.subscription-status')?.remove();
-      card.querySelector('.subscription-disclosure')?.remove();
-      const old=card.querySelector('#updates-contact');
-      if(old){old.remove();}
-      const info=document.createElement('p');info.className='subscription-status';
-      info.textContent=txt.external;card.appendChild(info);
-      const policy=document.createElement('p');policy.className='brevo-privacy';
-      const a=document.createElement('a');a.href=routes[lang].privacidad;a.textContent=txt.privacy;
-      a.target='_blank';a.rel='noopener noreferrer';policy.append(a,document.createTextNode(txt.privacyAfter));
-      card.appendChild(policy);
-      const b=document.createElement('button');b.type='button';b.className='subscription-view-button brevo-open';b.id='brevo-open';
-      b.setAttribute('aria-controls','brevo-panel');b.setAttribute('aria-expanded','false');b.textContent=txt.open;
-      card.appendChild(b);
-      const panel=document.createElement('div');panel.id='brevo-panel';panel.className='brevo-panel';panel.hidden=true;
-      const iframe=document.createElement('iframe');iframe.className='brevo-frame';iframe.title=txt.frame;
-      iframe.setAttribute('referrerpolicy','strict-origin-when-cross-origin');iframe.setAttribute('loading','lazy');
-      // No src until the person explicitly asks to see the third-party form.
-      iframe.dataset.src=forms[lang];
-      panel.appendChild(iframe);
-      const help=document.createElement('p');help.className='brevo-help';help.append(document.createTextNode(txt.help+' '));
-      const ext=document.createElement('a');ext.href=forms[lang];ext.target='_blank';ext.rel='noopener noreferrer';ext.textContent=txt.direct;
-      help.appendChild(ext);panel.appendChild(help);card.appendChild(panel);
-    }
-    // Footer links stay operable without JS and get shareable, stable targets. Existing legal dialog intercept remains available.
+    if(!card||card.querySelector('.br-sub'))return;
+    card.querySelector('.subscription-status')?.remove();
+    card.querySelector('.subscription-disclosure')?.remove();
+    card.querySelector('#updates-contact')?.remove();
+    widget=null;
+    const form=el('form','br-sub');form.noValidate=true;form.action=forms[lang];form.method='post';
+    const lab=el('label','br-sub-label',txt.label);lab.htmlFor='br-email';
+    const email=el('input','br-sub-email');email.type='email';email.id='br-email';email.name='EMAIL';email.autocomplete='email';email.required=true;email.placeholder=txt.ph;email.setAttribute('inputmode','email');
+    const hp=el('input','br-sub-hp');hp.type='text';hp.name='email_address_check';hp.tabIndex=-1;hp.autocomplete='off';hp.setAttribute('aria-hidden','true');
+    const consent=el('label','br-sub-consent');const cb=el('input');cb.type='checkbox';cb.name='OPT_IN';cb.value='1';cb.required=true;consent.append(cb,el('span',null,txt.consent));
+    const cap=el('div','br-sub-captcha');
+    const submit=el('button','br-sub-submit',txt.submit);submit.type='submit';
+    const msg=el('p','br-sub-msg');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
+    const note=el('p','br-sub-note',txt.note);const a=el('a',null,txt.privacy);a.href=routes[lang].privacidad;a.target='_blank';a.rel='noopener noreferrer';note.append(a,document.createTextNode('.'));
+    form.append(lab,email,hp,consent,cap,submit,msg,note);
+    const done=el('div','br-sub-done');done.hidden=true;done.tabIndex=-1;done.append(el('p','br-sub-done-title',txt.doneT),el('p','br-sub-done-text',txt.doneP));
+    card.append(form,done);
+    const wake=()=>renderCaptcha(form);
+    email.addEventListener('focus',wake,{once:true});cb.addEventListener('focus',wake,{once:true});
+    form.addEventListener('submit',async ev=>{
+      ev.preventDefault();msg.textContent='';msg.classList.remove('is-error');
+      const fail=(t,f)=>{msg.textContent=t;msg.classList.add('is-error');f&&f.focus();};
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim()))return fail(txt.errEmail,email);
+      if(!cb.checked)return fail(txt.errConsent,cb);
+      await renderCaptcha(form);
+      const token=window.grecaptcha&&widget!==null?window.grecaptcha.getResponse(widget):'';
+      if(!token)return fail(txt.errCaptcha);
+      const fd=new FormData();fd.append('EMAIL',email.value.trim());fd.append('OPT_IN','1');fd.append('email_address_check',hp.value);fd.append('locale',lang);fd.append('html_type','simple');fd.append('g-recaptcha-response',token);
+      submit.disabled=true;submit.textContent=txt.sending;
+      try{
+        const r=await fetch(form.action,{method:'POST',body:fd});
+        const data=await r.json().catch(()=>({}));
+        if(r.ok&&data.success!==false){form.hidden=true;done.hidden=false;done.focus();return;}
+        const errs=data.errors?Object.values(data.errors).join(' '):'';
+        fail(errs||txt.errGeneric);
+      }catch(e){fail(txt.errGeneric);}
+      submit.disabled=false;submit.textContent=txt.submit;
+      try{window.grecaptcha.reset(widget)}catch(e){}
+    });
     const map={privacidad:'footer-privacy',aviso:'footer-legal',cookies:'footer-cookies'};
-    for(const [type,id] of Object.entries(map)){const a=document.getElementById(id);if(a){a.href=routes[lang][type]}}
-    // Keep one stable language URL when manually changing languages on the page.
-  }
-  function openForm(){
-    const b=root.querySelector('#brevo-open'); const panel=root.querySelector('#brevo-panel');
-    if(!b||!panel)return;
-    const show=panel.hidden;
-    panel.hidden=!show;b.setAttribute('aria-expanded',String(show));
-    b.textContent=show?msgs[current()].close:msgs[current()].open;
-    if(show){const iframe=panel.querySelector('iframe');if(iframe&&!iframe.src)iframe.src=iframe.dataset.src;}
+    for(const [type,id] of Object.entries(map)){const l=document.getElementById(id);if(l){l.href=routes[lang][type]}}
   }
   document.addEventListener('click',ev=>{
-    if(ev.target.closest('#brevo-open')){ev.preventDefault();openForm()}
     if(ev.target.closest('#brevo-encounters')){
       ev.preventDefault();
-      root.querySelector('#contacto')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'start'});
-      const panel=root.querySelector('#brevo-panel');if(panel?.hidden)openForm();
+      const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+      root.querySelector('#contacto')?.scrollIntoView({behavior:reduce?'instant':'smooth',block:'start'});
+      setTimeout(()=>root.querySelector('#br-email')?.focus({preventScroll:true}),reduce?0:700);
     }
   });
   const observer=new MutationObserver(()=>{if(root.querySelector('#updates') || root.querySelector('#updates-contact'))setup()});
