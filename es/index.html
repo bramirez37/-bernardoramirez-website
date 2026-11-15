@@ -486,6 +486,7 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--focus-strong);out
 .br-sub-done-text{margin:0;font:400 15px/1.6 var(--sans,Arial,sans-serif);color:#4F5A52}
 @media(max-width:400px){.br-sub-captcha{transform:scale(.86);transform-origin:0 0;min-height:67px;height:67px}}
 /* v12.1 — the opening animation draws the thread above the intro layer again */
+.contact .br-sub{opacity:1}
 .contact .br-sub-label{display:block;margin:0 0 -6px;font-size:13px;font-weight:600;color:#393832}
 .contact .br-sub-consent{display:grid;grid-template-columns:20px 1fr;gap:12px;margin:0;font-size:13px;font-weight:400;line-height:1.6;color:#4F5A52}
 .contact .br-sub-consent input{display:block;width:18px;height:18px;margin:2px 0 0;padding:0;border:0;accent-color:#155A6C}
@@ -1571,7 +1572,7 @@ body.v3-opening-active #master-thread{z-index:212!important}
     const done=el('div','br-sub-done');done.hidden=true;done.tabIndex=-1;done.append(el('p','br-sub-done-title',txt.doneT),el('p','br-sub-done-text',txt.doneP));
     card.append(form,done);
     const wake=()=>renderCaptcha(form);
-    email.addEventListener('focus',wake,{once:true});cb.addEventListener('focus',wake,{once:true});
+    ['focusin','pointerdown','keydown'].forEach(t=>form.addEventListener(t,wake,{once:true}));
     form.addEventListener('submit',async ev=>{
       ev.preventDefault();msg.textContent='';msg.classList.remove('is-error');
       const fail=(t,f)=>{msg.textContent=t;msg.classList.add('is-error');f&&f.focus();};
